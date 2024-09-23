@@ -19,6 +19,9 @@ def main():
     parser.add_argument('-v', '--version', action='version', version=__version__)
     parser.add_argument('-l', '--log-level', default='info',
                         help='set log level (debug, info, warning, error, critical)')
+    parser.add_argument('--upper', action='store_true', help='convert problem index to uppercase')
+    parser.add_argument('--input-dir', type=str, help='Polygon package directory', default='polygon')
+    parser.add_argument('--output-dir', type=str, help='Domjudge package directory', default='domjudge')
     args = parser.parse_args()
 
     logging.basic_colorized_config(level=args.log_level.upper())
@@ -31,16 +34,18 @@ def main():
         problems = root.find('problems')
         logger.info(f'Found {len(problems)} problems in {contest_xml}')
         print('#!/bin/bash')
-        print('POLYGON_PACKAGE_DIR=polygon      # change this to the polygon package directory')
-        print('DOMJUDGE_PACKAGE_DIR=domjudge    # change this to the domjudge package directory')
+        print(f'POLYGON_PACKAGE_DIR={args.input_dir}      # change this to the polygon package directory')
+        print(f'DOMJUDGE_PACKAGE_DIR={args.output_dir}    # change this to the domjudge package directory')
         print()
         for problem in problems:
             index, name = problem_index_and_name(problem)
+            if args.upper:
+                index = index.upper()
             logger.info(f'Problem {index}: {name}')
             print(f'''# Problem {index}: {name} (change the color if needed)
 p2d --yes --code {index} --color "#FF0000" \\
     --output "$DOMJUDGE_PACKAGE_DIR/{name}.zip" --auto \\
-    "$POLYGON_PACKAGE_DIR/{name}-*\\$linux.zip"
+    $POLYGON_PACKAGE_DIR/{name}-*\\$linux.zip
 ''')
     except ArgumentError as e:
         logger.error(e)
