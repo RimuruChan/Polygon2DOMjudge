@@ -45,7 +45,7 @@ def main():
             print(f'''# Problem {index}: {name} (change the color if needed)
 p2d --yes --code {index} --color "#FF0000" \\
     --output "$DOMJUDGE_PACKAGE_DIR/{name}.zip" --auto \\
-    $POLYGON_PACKAGE_DIR/{name}-*\\$linux.zip
+    $POLYGON_PACKAGE_DIR/{name}*\\$linux.zip
 ''')
     except ArgumentError as e:
         logger.error(e)
