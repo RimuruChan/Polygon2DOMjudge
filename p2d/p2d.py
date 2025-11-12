@@ -561,6 +561,7 @@ g++ -Wall -DDOMJUDGE -O2 {interactor_file.name} -std=gnu++20 -o run
             "ACCEPTED": "CORRECT",
             "WRONG_ANSWER": "WRONG-ANSWER",
             "TIME_LIMIT_EXCEEDED": "TIMELIMIT",
+            "MEMORY_LIMIT_EXCEEDED": "MEMORY-LIMIT",
             "RUN_TIME_ERROR": "RUN-ERROR",
             "COMPILER_ERROR": "COMPILER-ERROR",
             "NO_OUTPUT": "NO-OUTPUT",

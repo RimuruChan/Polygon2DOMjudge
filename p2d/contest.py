@@ -44,6 +44,13 @@ def convert_contest(
             help="set log level (debug, info, warning, error, critical)",
         ),
     ] = "info",
+    upper: Annotated[
+        Optional[bool],
+        typer.Option(
+            "--upper",
+            help="convert problem codes to uppercase",
+        ),
+    ] = None,
 ) -> None:
     logging.basicConfig(
         level=log_level.upper(),
@@ -74,6 +81,8 @@ find_latest_version() {
 """)
         for problem in problems:
             index, name = problem_index_and_name(problem)
+            if upper:
+                index = index.upper()
             logger.info("Problem %s: %s", index, name)
             print(f"""# Problem {index}: {name} (change the color if needed)
 p2d --yes --code {index} --color "#FF0000" \\

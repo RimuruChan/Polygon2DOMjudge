@@ -3,13 +3,13 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "p2d"
+name = "rimuruchan-p2d"
 description = "Simple python script converting polygon package to domjudge(kattis) package"
-authors = [{ name = "cubercsl", email = "hi@cubercsl.site" }]
-maintainers = [
+authors = [
     { name = "cubercsl", email = "hi@cubercsl.site" },
-    { name = "Dup4", email = "hi@dup4.com" },
+    { name = "rimuruchan", email = "RealSprite233@outlook.com" },
 ]
+maintainers = [{ name = "rimuruchan", email = "RealSprite233@outlook.com" }]
 readme = "README.md"
 license = "MIT"
 keywords = ["Polygon", "DOMjudge", "Kattis", "Codeforces"]
@@ -34,9 +34,9 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-homepage = "https://github.com/cn-xcpc-tools/Polygon2Domjudge"
-documentation = "https://github.com/cn-xcpc-tools/Polygon2Domjudge"
-repository = "https://github.com/cn-xcpc-tools/Polygon2Domjudge"
+homepage = "https://github.com/RimuruChan/Polygon2Domjudge"
+documentation = "https://github.com/RimuruChan/Polygon2Domjudge"
+repository = "https://github.com/RimuruChan/Polygon2Domjudge"
 
 [project.scripts]
 p2d = "p2d.cli:app"
@@ -80,6 +80,7 @@ exclude_also = [
 version-file = "p2d/_version.py"
 
 [tool.hatch.build.targets.wheel]
+packages = ["p2d"]
 exclude = ["p2d/testlib/**/*", "!p2d/testlib/testlib.h", "!p2d/testlib/LICENSE"]
 
 [tool.hatch.version]
