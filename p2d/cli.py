@@ -128,14 +128,14 @@ def convert_problem(
             "--with-statement/--without-statement",
             help="include pdf statement in the package",
         ),
-    ] = False,
+    ] = True,
     with_attachments: Annotated[
         bool,
         typer.Option(
             "--with-attachments/--without-attachments",
             help="include attachments in the package",
         ),
-    ] = False,
+    ] = True,
     testset_name: Annotated[
         Optional[str],
         typer.Option(
